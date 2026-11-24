@@ -1,0 +1,91 @@
+{
+ "arm": "l2_text",
+ "batch": null,
+ "config_version": 1,
+ "ema": 0.9999,
+ "ema_warmup": true,
+ "g2": {
+  "p": 0.5,
+  "p_historical": 0.5,
+  "p_phrase_drop": 0.3
+ },
+ "g3": {
+  "p_copy": 0.5
+ },
+ "g3c": {
+  "p_jitter": 0.5,
+  "p_retime": 0.25,
+  "p_word_drop": 0.1,
+  "rate": [
+   2.5,
+   4.5
+  ],
+  "shift": 3,
+  "text_dir": null,
+  "text_version": "v1"
+ },
+ "g4": {
+  "p_both": 0.1,
+  "p_obs": 0.1,
+  "p_text": 0.2
+ },
+ "g6": {
+  "edge_radius": 3,
+  "edge_weight": 4.0,
+  "lambda": 1.0
+ },
+ "g7": {
+  "p": 0.5
+ },
+ "grad_clip": 1.0,
+ "l2v2": {
+  "cfg_p": {
+   "both": 0.1,
+   "l2": 0.1,
+   "text": 0.2
+  },
+  "dataset_share": "frames",
+  "dataset_weights": {
+   "crema-d": 1,
+   "ravdess": 1,
+   "talkvid": 1
+  },
+  "lexical": "viseme_v2",
+  "obs_mode": "bounded",
+  "state": true,
+  "tendency": true
+ },
+ "log_every": 500,
+ "lr": 0.0002,
+ "model": {
+  "d_model": 256,
+  "dropout": 0.1,
+  "ff": 1024,
+  "n_heads": 4,
+  "n_layers": 6
+ },
+ "paths": {
+  "G1": false,
+  "G2": false,
+  "G3": false,
+  "G3c": true,
+  "G4": false,
+  "G6": false,
+  "G7": false,
+  "G8": false
+ },
+ "policy": "static_ref",
+ "prep": null,
+ "prep_manifest_sha256": null,
+ "sampler": {
+  "repaint_u": 1,
+  "s_o": 1.0,
+  "s_t": 1.5,
+  "steps": 25
+ },
+ "seed": 0,
+ "steps": 50000,
+ "warmup": 500,
+ "weight_decay": 0.01,
+ "window": "W96"
+}

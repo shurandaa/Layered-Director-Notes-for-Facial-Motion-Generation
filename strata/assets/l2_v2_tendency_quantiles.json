@@ -1,0 +1,244 @@
+{
+ "format": "l2_v2_tendency_quantiles",
+ "tendency_version": "1.0.0",
+ "tendency_rules_sha256": "23f71989d3b7d7e14fd39d1147989b99b338e6ac117e51b61a744a25f0b0b9af",
+ "vocabulary_version": "2.0.0",
+ "vocabulary_sha256": "bc301529df1315afb3a8c556faa46e79e787836303099a6e028db561cd315eee",
+ "fitted_sha256": "5f6a215cef20774d98e6382fef201b8bcf6cc4dd20dd459b56dc95b7b048b639",
+ "fd_commit": "4cb22ba4fd1e9f39bf4b597debc94e1b5261d127",
+ "date": "2026-10-13",
+ "train": {
+  "run_dir": "/scratch/zhao_shur_neu/facial_dynamic_ai_workflow/talkvid/runs/talkvid-combined__20260930T022452Z__cc10fef",
+  "split": "train",
+  "seed": 0,
+  "n_tracks": 480,
+  "track_ids_sha256": "589de1bf4bc4e15a49c0988c985fe68b1006ea7c226179af54206de3f0e1dd82",
+  "test_clip_sha256": "68e43123e3d10dd0802c0c2ae984743f075cdedad58e6647144b8c1a51ee497e",
+  "test_sha_matches_pin": true,
+  "text_dir": "/work/neu/p2026_0014_neu/facial_dynamic/runs/ai_workflow/T0468/content_text/train",
+  "text_settings_sha256": "c40b3e2ed36c779abfffc26a23466e9825fbb3de4f2d0e6a6b4ca250078b5343",
+  "n_tracks_with_words": 465,
+  "n_segments": 577,
+  "n_tracks_one_segment": 418
+ },
+ "articulation_sigma": {
+  "jawOpen": 0.1201,
+  "mouthLowerDownLeft+mouthLowerDownRight": 0.0701,
+  "mouthFunnel": 0.0637,
+  "mouthPucker": 0.28
+ },
+ "rest_variants": {
+  "p10": {
+   "edges": {
+    "blink_rate": [
+     23.48,
+     35.8,
+     47.08,
+     59.6
+    ],
+    "head_energy": [
+     10.52,
+     14.04,
+     17.3,
+     22.3
+    ],
+    "head_gesture_rate": [
+     23.8,
+     35.8,
+     47.7,
+     58.78
+    ],
+    "gaze_wander": [
+     0.03,
+     0.12,
+     0.23,
+     0.4
+    ],
+    "gaze_shift_rate": [
+     24.34,
+     45.08,
+     58.22,
+     71.5
+    ],
+    "face_energy": [
+     0.22,
+     0.27,
+     0.32,
+     0.38
+    ],
+    "articulation": [
+     0.76,
+     1.174,
+     1.46,
+     1.92
+    ]
+   },
+   "representatives": {
+    "blink_rate": [
+     11.9,
+     30.3,
+     39.5,
+     49.2,
+     71.5
+    ],
+    "head_energy": [
+     8.2,
+     12.3,
+     15.9,
+     19.4,
+     26.4
+    ],
+    "head_gesture_rate": [
+     14.3,
+     35.8,
+     47.3,
+     50.9,
+     64.2
+    ],
+    "gaze_wander": [
+     0.01,
+     0.07,
+     0.18,
+     0.3,
+     0.56
+    ],
+    "gaze_shift_rate": [
+     12.4,
+     35.8,
+     47.7,
+     61.0,
+     83.1
+    ],
+    "face_energy": [
+     0.19,
+     0.25,
+     0.3,
+     0.35,
+     0.44
+    ],
+    "articulation": [
+     0.55,
+     0.97,
+     1.32,
+     1.64,
+     2.24
+    ]
+   },
+   "n": {
+    "blink_rate": 577,
+    "head_energy": 577,
+    "head_gesture_rate": 577,
+    "gaze_wander": 577,
+    "gaze_shift_rate": 577,
+    "face_energy": 577,
+    "articulation": 562
+   }
+  },
+  "median": {
+   "edges": {
+    "blink_rate": [
+     23.8,
+     35.8,
+     47.12,
+     59.6
+    ],
+    "head_energy": [
+     10.52,
+     14.04,
+     17.3,
+     22.3
+    ],
+    "head_gesture_rate": [
+     23.8,
+     35.8,
+     47.7,
+     58.78
+    ],
+    "gaze_wander": [
+     0.03,
+     0.12,
+     0.23,
+     0.4
+    ],
+    "gaze_shift_rate": [
+     24.34,
+     45.08,
+     58.22,
+     71.5
+    ],
+    "face_energy": [
+     0.22,
+     0.27,
+     0.32,
+     0.38
+    ],
+    "articulation": [
+     0.76,
+     1.174,
+     1.46,
+     1.92
+    ]
+   },
+   "representatives": {
+    "blink_rate": [
+     12.2,
+     35.8,
+     39.1,
+     50.2,
+     71.5
+    ],
+    "head_energy": [
+     8.2,
+     12.3,
+     15.9,
+     19.4,
+     26.4
+    ],
+    "head_gesture_rate": [
+     14.3,
+     35.8,
+     47.3,
+     50.9,
+     64.2
+    ],
+    "gaze_wander": [
+     0.01,
+     0.07,
+     0.18,
+     0.3,
+     0.56
+    ],
+    "gaze_shift_rate": [
+     12.4,
+     35.8,
+     47.7,
+     61.0,
+     83.1
+    ],
+    "face_energy": [
+     0.19,
+     0.25,
+     0.3,
+     0.35,
+     0.44
+    ],
+    "articulation": [
+     0.55,
+     0.97,
+     1.32,
+     1.64,
+     2.24
+    ]
+   },
+   "n": {
+    "blink_rate": 577,
+    "head_energy": 577,
+    "head_gesture_rate": 577,
+    "gaze_wander": 577,
+    "gaze_shift_rate": 577,
+    "face_energy": 577,
+    "articulation": 562
+   }
+  }
+ }
+}

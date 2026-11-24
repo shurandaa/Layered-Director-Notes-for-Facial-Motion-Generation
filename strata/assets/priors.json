@@ -1,0 +1,25 @@
+{
+ "format": "l2_generation_priors",
+ "l1_rules_version": "1.4.0",
+ "masks": "all_observed",
+ "rotation_reference": {
+  "head_rotation": {
+   "x": 2.7,
+   "y": -0.6,
+   "z": 0.1
+  }
+ },
+ "train": {
+  "encode": "variant hm_rf_g1 l2_encode",
+  "n_tracks": 480,
+  "run_dir": "/scratch/zhao_shur_neu/facial_dynamic_ai_workflow/talkvid/runs/talkvid-combined__20260930T022452Z__cc10fef",
+  "split": "train",
+  "track_ids_sha256": "589de1bf4bc4e15a49c0988c985fe68b1006ea7c226179af54206de3f0e1dd82"
+ },
+ "translation_reference": {
+  "head_tx": 0.0,
+  "head_ty": 0.003,
+  "head_tz": 0.005
+ },
+ "version": 1
+}

@@ -1,0 +1,44 @@
+{
+ "format": "l2_v2_tendency_rules",
+ "tendency_version": "1.0.0",
+ "applies_to_vocabulary_version": "2.0.0",
+ "description": "L2 v2 tendency block (plan_l2_v2.md §2, §12 #7 / #10 / #11; workflow T0565): 7 dynamic statistics per sentence segment + a track default, written as TRAIN-quantile level words (a number is also accepted). Opt-in: src/semantic/l2_v2_tendency.py only. Numbers copied from workflow/tasks/T0561/params_v2.json 'tendency' unless a key says otherwise.",
+ "source": {
+  "design": "workflow/plan_l2_v2.md §2 and §12",
+  "params": "workflow/tasks/T0561/params_v2.json tendency (gaze_aversion renamed gaze_wander, plan §12 #7)",
+  "fitted": "schemas/l2_v2_tendency_quantiles.json, TalkVid TRAIN only (scripts/l2_v2.py fit-tendency)"
+ },
+ "params": ["blink_rate", "head_energy", "head_gesture_rate", "gaze_wander", "gaze_shift_rate", "face_energy", "articulation"],
+ "steps": {"blink_rate": 0.1, "head_energy": 0.1, "head_gesture_rate": 0.1, "gaze_wander": 0.01, "gaze_shift_rate": 0.1,
+           "face_energy": 0.01, "articulation": 0.01},
+ "units": {"blink_rate": "1/min", "head_energy": "deg/s", "head_gesture_rate": "1/min", "gaze_wander": "share of frames",
+           "gaze_shift_rate": "1/min", "face_energy": "1/s", "articulation": "TRAIN std"},
+ "levels": ["very_low", "low", "mid", "high", "very_high"],
+ "edge_quantiles": [20, 40, 60, 80],
+ "segmentation": {
+  "min_frames": 90,
+  "boundary": "floor((end_frame_k + 1 + start_frame_{k+1}) / 2) between sentences k and k+1 (end inclusive); first segment from frame 0, last to n_frames",
+  "merge": "while > 1 segment and the shortest (earliest on a tie) is < min_frames: merge it into its shorter neighbour (tie: the following one)",
+  "no_words": "one segment = the whole track"
+ },
+ "rates": {
+  "blink_rate": {"family": "eyelid", "kind": "blink"},
+  "head_gesture_rate": {"family": "head_rot"},
+  "gaze_shift_rate": {"family": "gaze"},
+  "rule": "event units (repeat units counted) whose start frame lies in the segment / segment minutes"
+ },
+ "smooth_sigma_frames": 2.0,
+ "gaze_wander": {"threshold": 0.05, "rule": "share of segment frames with ||(gaze_pitch, gaze_yaw) - the track's gaze rest|| > threshold; the rest is the per-track median gaze = this person's usual gaze in the clip (plan §12 #7)"},
+ "face_energy": {"channels": ["browDownLeft", "browDownRight", "browInnerUp", "browOuterUpLeft", "browOuterUpRight", "eyeSquintLeft", "eyeSquintRight", "eyeWideLeft", "eyeWideRight"],
+                 "rule": "mean over segment frames of sqrt(mean_c (np.gradient(gaussian_filter1d(x_c, sigma, mode='nearest')) * hz)^2)"},
+ "head_energy": {"rule": "mean over segment frames of ||np.gradient(gaussian_filter1d(rotvec_deg, sigma, mode='nearest'))|| * hz, rotvec about the track reference"},
+ "articulation": {"features": [["jawOpen"], ["mouthLowerDownLeft", "mouthLowerDownRight"], ["mouthFunnel"], ["mouthPucker"]],
+                  "min_frames": 15,
+                  "rule": "over the segment's in-word frames (content-text words, start..end inclusive; >= min_frames else undefined): mean over features f (a feature = the mean of its channels) of (p90 - p10 of x_f) / sigma_f, sigma_f = TRAIN pooled std of x_f over TRAIN in-word frames (fitted)"},
+ "writing": {
+  "default": "the track default holds all 7 (same definitions over the whole track); an undefined default is written as level 'mid' without a value",
+  "segments": "one entry per merged segment, t = [start, end) seconds, holding only the params whose level differs from the default; an undefined param is omitted; a segment entry with no param is not written",
+  "entry": "a param is {level, value} when encoded; an LLM may write a level word, a number, or {level} / {value} / {level, value}",
+  "decode": "value if given, else the level's TRAIN representative (median of the TRAIN segment values inside that bin); frames outside every written segment take the default"
+ }
+}
