@@ -1,4 +1,4 @@
-# Strata — Layered Director Notes for Facial Motion Generation
+# Layered Director Notes for Facial Motion Generation
 
 Code, data and models for the paper *Layered Director Notes for Facial Motion Generation*. With this repository you
 can encode tracked facial motion into director notes, generate motion from notes, rebuild the training data, train
@@ -27,7 +27,7 @@ cd $DATA && sha256sum -c SHA256SUMS
 | `clips.json`, `scripts.json`, `names.json`, `curves_{train,val}.npz` | tracked 63-D curves and the script of every clip: 6,684 training and 1,485 validation clips of TalkVid, RAVDESS and CREMA-D (`strata/data.py`) | 0.2 GB |
 | `checkpoints/strata_s{0,1,2}.pt` | the generator of the paper, three seeds | 62 MB |
 | `rows/ours_s{0,1,2}/` | the paper's generated validation motion (Tab. 1 "ours"), full / standard / lite notes, 4 samples per clip | 2.1 GB |
-| `reference/`, `golden/` | the paper's numbers and hashes used by `tests/test_release.py` | 16 MB |
+| `reference/`, `golden/` | the paper's numbers and hashes used by `tests/test_release.py` | 80 MB |
 | `nltk_data/` | CMUdict and the averaged perceptron tagger (for visemes of new scripts) | 3 MB |
 
 The curves come from MediaPipe tracks of the three datasets; their licences apply. Raw videos are not included.
