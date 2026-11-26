@@ -20,7 +20,7 @@ export STRATA_NLTK_DATA=$DATA/nltk_data   # CMUdict and the POS tagger used by g
 
 ```bash
 pip install -U huggingface_hub
-hf download HF_DATASET_ID --repo-type dataset --local-dir $DATA
+hf download Shuran11/Layered-Director-Notes-for-Facial-Motion-Generation --repo-type dataset --local-dir $DATA
 cd $DATA && sha256sum -c SHA256SUMS
 ```
 
