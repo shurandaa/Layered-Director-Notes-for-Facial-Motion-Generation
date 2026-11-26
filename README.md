@@ -4,6 +4,8 @@ Code, data and models for the paper *Layered Director Notes for Facial Motion Ge
 can encode tracked facial motion into director notes, generate motion from notes, rebuild the training data, train
 the generator, and score generated motion with the metrics of the paper.
 
+**Demo videos:** https://shurandaa.github.io/Layered-Director-Notes-for-Facial-Motion-Generation/
+
 ## Install
 
 Python 3.12:
