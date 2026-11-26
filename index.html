@@ -1,0 +1,184 @@
+<meta name="robots" content="noindex, nofollow">
+<title>LDN Demo Videos</title>
+<style>
+:root { --bg:#fbfbfa; --card:#ffffff; --ink:#1d2127; --muted:#5d6570; --line:#e1e3e7; --accent:#34507a; --chip:#eef1f5; --chip-on:#34507a; --chip-on-ink:#ffffff; --note:#f4f6f9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#15171a; --card:#1d2024; --ink:#e7e9ec; --muted:#a3aab4; --line:#30353c; --accent:#8fb0e0; --chip:#262a30; --chip-on:#8fb0e0; --chip-on-ink:#0f1114; --note:#1f2328; } }
+:root[data-theme="dark"] { --bg:#15171a; --card:#1d2024; --ink:#e7e9ec; --muted:#a3aab4; --line:#30353c; --accent:#8fb0e0; --chip:#262a30; --chip-on:#8fb0e0; --chip-on-ink:#0f1114; --note:#1f2328; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+main { max-width:1080px; margin:0 auto; padding:32px 16px 64px; }
+header h1 { font-size:30px; line-height:1.25; margin:0 0 6px; letter-spacing:-0.01em; }
+header .sub { color:var(--muted); margin:0 0 18px; }
+h2 { font-size:21px; margin:44px 0 6px; padding-top:8px; border-top:1px solid var(--line); }
+p { margin:6px 0 12px; }
+.muted { color:var(--muted); }
+nav { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:14px; margin:4px 0 8px; }
+nav a { color:var(--accent); text-decoration:none; }
+nav a:hover { text-decoration:underline; }
+.note { background:var(--note); border:1px solid var(--line); border-radius:10px; padding:12px 16px; font-size:15px; }
+.note ul { margin:4px 0; padding-left:20px; }
+video { width:100%; display:block; border-radius:8px; background:#000; }
+.player { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px; margin:10px 0; }
+.player .cap { font-size:14px; color:var(--muted); margin:8px 4px 2px; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0; }
+.chip { border:1px solid var(--line); background:var(--chip); color:var(--ink); border-radius:999px; padding:4px 12px; font:inherit; font-size:14px; cursor:pointer; }
+.chip[aria-pressed="true"] { background:var(--chip-on); color:var(--chip-on-ink); border-color:var(--chip-on); }
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:10px; }
+.thumb { background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; cursor:pointer; padding:0; text-align:left; font:inherit; color:inherit; }
+.thumb img { width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 30%; display:block; background:var(--chip); }
+.thumb span { display:block; padding:6px 8px 8px; font-size:13px; line-height:1.35; }
+.thumb span b { font-weight:600; }
+.thumb[aria-current="true"] { outline:2px solid var(--accent); outline-offset:-2px; }
+.count { font-size:14px; color:var(--muted); }
+footer { margin-top:48px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); padding-top:12px; }
+@media (max-width:560px) { header h1 { font-size:24px; } .grid { grid-template-columns:repeat(2, 1fr); } }
+
+.quad { display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; }
+.quad figure { margin:0; }
+.quad figcaption { font-size:13px; color:var(--muted); text-align:center; margin-top:4px; }
+.quad figcaption b { color:var(--ink); font-weight:600; }
+.quad video { border-radius:6px; }
+.ctl { display:flex; gap:8px; align-items:center; margin:6px 0 0; }
+.btn { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:8px; padding:4px 12px; font:inherit; font-size:14px; cursor:pointer; }
+.vr { font-size:14px; font-weight:500; color:var(--muted); margin-left:10px; white-space:nowrap; }
+.vn { display:inline-block; font-weight:700; color:var(--accent); margin-right:6px; font-variant-numeric:tabular-nums; }
+.pair { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+@media (max-width:560px) { .quad { grid-template-columns:repeat(2, 1fr); } .pair { grid-template-columns:1fr; } }
+</style>
+<main>
+<header>
+  <h1>Layered Director Notes for Facial Motion Generation</h1>
+  <p class="sub">Videos for the paper <em>Layered Director Notes for Facial Motion Generation</em> (Shuran Zhao, Tian Wang, Daohan Lu, Guanzhou Ji). Code, data and models: <a href="https://github.com/shurandaa/Layered-Director-Notes-for-Facial-Motion-Generation">GitHub</a>.</p>
+  <nav>
+    <a href="#lips">Audio-driven lips</a><a href="#compare">Completion (Fig. 5a)</a><a href="#strength">Specified intensity</a><a href="#perform">Performances</a>
+    <a href="#emotions">Same line, different notes</a><a href="#llm">Notes from a language model</a>
+    <a href="#stare">Expression without speech</a><a href="#gallery">Many characters</a>
+  </nav>
+</header>
+
+<div class="note">
+  <b>What the videos show.</b>
+  <ul>
+    <li>Our generator outputs motion parameters, not pixels: 52 ARKit blendshapes, head pose and gaze (63 values per frame, 30 fps). All faces are rendered from these parameters by LAM, an existing avatar method that we do not train. Every character is built from one AI-generated portrait; none is a real person.</li>
+    <li>Our model takes no audio: the mouth is generated from the word timing of the script, not synchronized to speech. The videos are silent except in the first section.</li>
+    <li>Where shown, the timeline below a face lists the director notes: tendencies for the whole clip, states (seconds long) and events (single moments); black blocks mark when each word is spoken.</li>
+  </ul>
+</div>
+
+<h2 id="lips">Adding audio-driven lips<span class="vr">Videos 1–2</span></h2>
+<p>Our notes leave the 14 speech channels of the jaw and mouth to the word timing, so an audio-driven method can supply them when audio exists. Here the speech is synthesized by text-to-speech and Audio2Face-3D drives the lips from it. <b>Left:</b> ours alone (mouth from word timing). <b>Middle:</b> ours with the 14 speech channels from Audio2Face-3D. <b>Right:</b> Audio2Face-3D alone, whose head and gaze stay still. In these clips our non-speech mouth channels are smoothed over 0.2&nbsp;s for display. <b>These videos have sound.</b></p>
+<div class="pair">
+  <div class="player"><video controls loop playsinline preload="metadata" poster="p/lips_doubtful_m.jpg" src="v/lips_doubtful_m.mp4"></video><div class="cap"><span class="vn">#1</span>Doubtful · realistic (male) · male voice</div></div>
+  <div class="player"><video controls loop playsinline preload="metadata" poster="p/lips_warm_toon_f.jpg" src="v/lips_warm_toon_f.mp4"></video><div class="cap"><span class="vn">#2</span>Warm · cartoon (female) · female voice</div></div>
+</div>
+
+<h2 id="compare">Completing what is not specified (Fig. 5a)<span class="vr">Videos 3–10</span></h2>
+<p>The same standard notes of a TalkVid validation clip on two characters. Most of the time nothing is specified; each method must perform those spans itself. Retrieval pastes motion that does not match the notes, and A2F+LDN keeps the head and gaze still.</p>
+<div class="chips" id="cmp-who"></div>
+<div class="player"><div class="quad" id="cmp-quad"></div><div class="ctl"><button class="btn" type="button" data-group="cmp-quad">Play / pause all</button><button class="btn" type="button" data-restart="cmp-quad">Restart</button></div></div>
+
+<h2 id="strength">Specified intensity<span class="vr">Videos 11–18</span></h2>
+<p>One instruction specified at three levels, everything else identical (clip, script, checkpoint, noise); the smile uses the notes of the user study (Sec. 4.5). Ours follows the level; TL, a single-layer timeline, has no intensity levels, so it receives the same input at all three levels. For the nod, the red line marks the eye height before the nod.</p>
+<div class="chips" id="str-fam"></div>
+<div class="player"><div class="quad" id="str-quad"></div><div class="ctl"><button class="btn" type="button" data-group="str-quad">Play / pause all</button><button class="btn" type="button" data-restart="str-quad">Restart</button></div></div>
+
+<h2 id="perform">Directing a performance with layered notes<span class="vr">Videos 19–34</span></h2>
+<p>Four sets of director notes authored by hand, each performed by four characters. The timeline shows which notes are being executed at every moment.</p>
+<div class="chips" id="talk-perf"></div>
+<div class="chips" id="talk-who"></div>
+<div class="player"><video id="talk-v" controls muted loop playsinline preload="metadata"></video><div class="cap" id="talk-cap"></div></div>
+
+<h2 id="emotions">Same line, different notes<span class="vr">Videos 35–37</span></h2>
+<p>Line and word timing are identical; only the director notes differ (angry, sad, doubtful).</p>
+<div class="chips" id="emo-who"></div>
+<div class="player"><video id="emo-v" controls muted loop playsinline preload="metadata"></video><div class="cap" id="emo-cap"></div></div>
+
+<h2 id="llm">Notes authored by a language model (Sec. 4.6)<span class="vr">Videos 38–39</span></h2>
+<p>Claude Opus 5.5 authored these notes given only the script and its word timing, without fine-tuning on LDN data; our generator performs the same notes on two characters.</p>
+<div class="pair">
+  <div class="player"><video controls muted loop playsinline preload="metadata" poster="p/llm_h_f_lat_1.jpg" src="v/llm_h_f_lat_1.mp4"></video><div class="cap"><span class="vn">#38</span>Realistic (female)</div></div>
+  <div class="player"><video controls muted loop playsinline preload="metadata" poster="p/llm_an_f_red_0.jpg" src="v/llm_an_f_red_0.mp4"></video><div class="cap"><span class="vn">#39</span>Anime (female)</div></div>
+</div>
+
+<h2 id="stare">Expression without speech<span class="vr">Videos 40–42</span></h2>
+<p>A silent angry stare: the notes contain no line, so the mouth does not speak and the performance is carried by the brows, eyes and head alone.</p>
+<div class="player"><video id="st-v" controls muted loop playsinline preload="metadata"></video><div class="cap" id="st-cap"></div></div>
+<div class="grid" id="st-grid"></div>
+
+<h2 id="gallery">One set of notes, many characters<span class="vr">Videos 43–51</span></h2>
+<p>9 clips with 9 different characters: realistic, anime, cartoon and animal faces. Click a thumbnail to play it.</p>
+<div class="player"><video id="gal-v" controls muted loop playsinline preload="metadata"></video><div class="cap" id="gal-cap"></div></div>
+<div class="grid" id="gal-grid"></div>
+
+<h2 id="notes">Notes</h2>
+<ul>
+  <li>The renderer weakens expressions, so face regions are shown with a fixed display gain, the same for every method and column in a comparison. All quantitative results in the paper are computed on the motion parameters, not on the renderings.</li>
+  <li>Clips were chosen from several generated samples; the paper reports results over all samples.</li>
+</ul>
+<footer>No tracking, no external requests.</footer>
+</main>
+<script>
+"use strict";
+const DATA = {"gallery": [{"id": "gal_130", "perf": "Warm", "who": "Anime (silver hair)", "n": 43}, {"id": "gal_035", "perf": "Doubtful", "who": "Anime (black bob)", "n": 44}, {"id": "gal_038", "perf": "Excited", "who": "Anime (red ponytail)", "n": 45}, {"id": "gal_062", "perf": "Excited", "who": "Cartoon dog (golden retriever)", "n": 46}, {"id": "gal_017", "perf": "Sympathetic", "who": "Realistic (female, Black)", "n": 47}, {"id": "gal_010", "perf": "Doubtful", "who": "Realistic (female, European)", "n": 48}, {"id": "gal_007", "perf": "Warm", "who": "Realistic (female, Latina)", "n": 49}, {"id": "gal_050", "perf": "Warm", "who": "Realistic (male, East Asian)", "n": 50}, {"id": "gal_046", "perf": "Doubtful", "who": "Cartoon (male)", "n": 51}], "stare": [{"id": "gal_012", "perf": "Silent angry stare", "who": "Realistic (female, European)", "n": 40}, {"id": "gal_049", "perf": "Silent angry stare", "who": "Realistic (male, European)", "n": 41}, {"id": "gal_037", "perf": "Silent angry stare", "who": "Anime (red ponytail)", "n": 42}], "num": {"lips_doubtful_m": 1, "lips_warm_toon_f": 2, "cmp_A_10_real": 3, "cmp_A_10_R2": 4, "cmp_A_10_A2F_DN": 5, "cmp_A_10_ours": 6, "cmp_G_real": 7, "cmp_G_R2": 8, "cmp_G_A2F_DN": 9, "cmp_G_ours": 10, "str_smile_ours_slight": 11, "str_smile_ours_clear": 12, "str_smile_ours_strong": 13, "str_smile_tl": 14, "str_nod_ours_slight": 15, "str_nod_ours_clear": 16, "str_nod_ours_strong": 17, "str_nod_tl": 18, "talk_warm_h_f": 19, "talk_warm_h_m": 20, "talk_warm_an_f": 21, "talk_warm_toon": 22, "talk_doubtful_v2_h_f": 23, "talk_doubtful_v2_h_m": 24, "talk_doubtful_v2_an_f": 25, "talk_doubtful_v2_toon": 26, "talk_sympathetic_h_f": 27, "talk_sympathetic_h_m": 28, "talk_sympathetic_an_f": 29, "talk_sympathetic_toon": 30, "talk_skeptical_h_f": 31, "talk_skeptical_h_m": 32, "talk_skeptical_an_f": 33, "talk_skeptical_toon": 34, "same_line_toon_0": 35, "same_line_h_f_0": 36, "same_line_h_m_1": 37, "llm_h_f_lat_1": 38, "llm_an_f_red_0": 39, "gal_012": 40, "gal_049": 41, "gal_037": 42, "gal_130": 43, "gal_035": 44, "gal_038": 45, "gal_062": 46, "gal_017": 47, "gal_010": 48, "gal_007": 49, "gal_050": 50, "gal_046": 51}};
+let touched = false; document.addEventListener("click", () => { touched = true; }, { capture: true });
+function chips(el, items, onPick, init) {
+  const box = document.getElementById(el); let cur = init;
+  items.forEach(([key, label]) => {
+    const b = document.createElement("button"); b.className = "chip"; b.textContent = label; b.type = "button";
+    b.setAttribute("aria-pressed", String(key === cur));
+    b.onclick = () => { cur = key; box.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === b))); onPick(key); };
+    box.appendChild(b);
+  });
+  onPick(init);
+}
+const N = id => '<span class="vn">#' + DATA.num[id] + "</span>";
+function play(v, id, autoplay) { v.poster = "p/" + id + ".jpg"; v.src = "v/" + id + ".mp4"; if (autoplay) v.play().catch(() => {}); }
+// synchronized groups of four
+function quad(id, items) {
+  const box = document.getElementById(id); box.innerHTML = "";
+  items.forEach(([vid, label]) => {
+    const f = document.createElement("figure");
+    f.innerHTML = '<video muted playsinline preload="auto" poster="p/' + vid + '.jpg" src="v/' + vid + '.mp4"></video><figcaption>' + N(vid) + label + '</figcaption>';
+    box.appendChild(f);
+  });
+  const vs = [...box.querySelectorAll("video")];
+  vs[0].addEventListener("ended", () => { vs.forEach(v => { v.currentTime = 0; v.play().catch(() => {}); }); });
+  if (touched) vs.forEach(v => v.play().catch(() => {}));
+}
+document.querySelectorAll("[data-group]").forEach(b => b.onclick = () => {
+  const vs = [...document.getElementById(b.dataset.group).querySelectorAll("video")];
+  const t = vs[0].currentTime; const go = vs[0].paused;
+  vs.forEach(v => { v.currentTime = t; if (go) v.play().catch(() => {}); else v.pause(); });
+});
+document.querySelectorAll("[data-restart]").forEach(b => b.onclick = () => {
+  document.getElementById(b.dataset.restart).querySelectorAll("video").forEach(v => { v.currentTime = 0; v.play().catch(() => {}); });
+});
+chips("cmp-who", [["A_10", "Character A"], ["G", "Character B"]], k => quad("cmp-quad",
+  [["cmp_" + k + "_real", "Real (tracked)"], ["cmp_" + k + "_R2", "R2 Retrieval"], ["cmp_" + k + "_A2F_DN", "A2F+LDN"], ["cmp_" + k + "_ours", "<b>Ours</b>"]]), "A_10");
+chips("str-fam", [["smile", "Smile (state)"], ["nod", "Nod (event)"]], k => quad("str-quad",
+  [["str_" + k + "_ours_slight", "<b>Ours</b> · slight"], ["str_" + k + "_ours_clear", "<b>Ours</b> · moderate"], ["str_" + k + "_ours_strong", "<b>Ours</b> · strong"], ["str_" + k + "_tl", "TL · any level"]]), "smile");
+const perfs = [["warm","Warm"],["doubtful_v2","Doubtful"],["excited","Excited"],["sympathetic","Sympathetic"],["skeptical","Skeptical"]];
+const perfsTalk = perfs.filter(p => p[0] !== "excited");
+const whos = [["h_f","Realistic (female)"],["h_m","Realistic (male)"],["an_f","Anime"],["toon","Cartoon"]];
+const talk = { perf: "warm", who: "h_f" };
+function showTalk() { play(document.getElementById("talk-v"), "talk_" + talk.perf + "_" + talk.who, touched);
+  const id = "talk_" + talk.perf + "_" + talk.who;
+  document.getElementById("talk-cap").innerHTML = N(id) + perfs.find(p => p[0] === talk.perf)[1] + " · " + whos.find(w => w[0] === talk.who)[1]; }
+chips("talk-perf", perfsTalk, k => { talk.perf = k; showTalk(); }, "warm");
+chips("talk-who", whos, k => { talk.who = k; showTalk(); }, "h_f");
+chips("emo-who", [["toon_0","Cartoon"],["h_f_0","Realistic (female)"],["h_m_1","Realistic (male)"]],
+      k => { play(document.getElementById("emo-v"), "same_line_" + k, touched);
+             document.getElementById("emo-cap").innerHTML = N("same_line_" + k) + {toon_0: "Cartoon", h_f_0: "Realistic (female)", h_m_1: "Realistic (male)"}[k]; }, "toon_0");
+function makeGrid(vid, gridId, capId) {
+  const v = document.getElementById(vid), grid = document.getElementById(gridId);
+  const show = g => { play(v, g.id, touched); document.getElementById(capId).innerHTML = N(g.id) + g.perf + " · " + g.who;
+    grid.querySelectorAll(".thumb").forEach(t => t.setAttribute("aria-current", String(t.dataset.id === g.id))); };
+  return list => { grid.innerHTML = "";
+    list.forEach(g => { const b = document.createElement("button"); b.type = "button"; b.className = "thumb"; b.dataset.id = g.id;
+      b.innerHTML = '<img loading="lazy" alt="" src="p/' + g.id + '.jpg"><span>' + N(g.id) + '<b>' + g.perf + '</b><br>' + g.who + '</span>';
+      b.onclick = () => { show(g); v.scrollIntoView({ behavior: "smooth", block: "center" }); }; grid.appendChild(b); });
+    if (list.length) show(list[0]); };
+}
+makeGrid("gal-v", "gal-grid", "gal-cap")(DATA.gallery);
+makeGrid("st-v", "st-grid", "st-cap")(DATA.stare);
+</script>
